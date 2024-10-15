@@ -18,7 +18,7 @@ namespace Paint_Calculator
         public class Square
         {
             //Room Data
-            double width, length, height;
+            private double width, length, height;
             //Visual Display Settings
             private Canvas outputCanvas;
             private Label centreSquare;
@@ -90,6 +90,13 @@ namespace Paint_Calculator
             {
                 double paint = TotalWallArea * METRIC_PAINT_RATIO * numCoats;
                 return Math.Round(paint, 2);
+            }
+
+            public void SetDimensions(double width, double length, double height)
+            {
+                this.width = width;
+                this.length = length;                
+                this.height = height;
             }
 
             /// <summary>

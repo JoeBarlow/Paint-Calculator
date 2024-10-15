@@ -1,3 +1,6 @@
+using Paint_Calculator;
+using static Paint_Calculator.RoomData;
+
 namespace Unit_Tests
 {
     [TestClass]
@@ -7,9 +10,11 @@ namespace Unit_Tests
         public void TestFloorArea()
         {
             //Data taken from: https://www.britishhardwoods.co.uk/blog/measure-floor-area/
+            //Width * Length - 4.25 * 5.25
 
-            const double expected = 22.32;
-            double result = 0; //Will use RoomData function
+            const double expected = 22.31;
+            Square newRoom = new Square(4.25, 5.25, 0);
+            double result = Math.Round(newRoom.Area, 2);
 
             Assert.AreEqual(expected, result);
         }

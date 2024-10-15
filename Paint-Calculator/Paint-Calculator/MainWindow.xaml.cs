@@ -27,6 +27,7 @@ namespace Paint_Calculator
             InitializeComponent();
             CreateCanvas();
             CreateBaseRoom();
+            PlaceTextBoxes();
         }
 
         private void CreateCanvas()
@@ -48,6 +49,11 @@ namespace Paint_Calculator
             baseRoom = new Square(10, 10, 10);
             baseRoom.Canvas = mainCanvas;
             baseRoom.ToggleCentreSquare(true);
+        }
+
+        private void PlaceTextBoxes()
+        {
+
         }
     }
 }

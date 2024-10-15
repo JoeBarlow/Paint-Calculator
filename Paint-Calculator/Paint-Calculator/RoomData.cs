@@ -67,6 +67,7 @@ namespace Paint_Calculator
                 { 
                     outputCanvas = value;
                     UpdateVertexPositions();
+                    UpdateEdgePositions();
                 }
             }
 
@@ -139,6 +140,17 @@ namespace Paint_Calculator
                 vertices[2].SetPosition(XPos - halfSize, YPos - halfSize);
                 vertices[3].SetPosition(XPos + halfSize, YPos - halfSize);
             }
+
+            private void UpdateEdgePositions()
+            {
+                edges = new Edge[4];
+
+                //Layed out directionally so resizing label works correctly
+                edges[0] = new Edge(vertices[0], vertices[1], outputCanvas);
+                edges[1] = new Edge(vertices[1], vertices[3], outputCanvas);
+                edges[2] = new Edge(vertices[2], vertices[3], outputCanvas);
+                edges[3] = new Edge(vertices[0], vertices[2], outputCanvas);
+            }
         }
 
         /// <summary>
@@ -147,7 +159,43 @@ namespace Paint_Calculator
         /// </summary>
         private class Edge
         {
-            Vertex v1, v2;
+            private Vertex v1, v2;
+            private Label visualComponent;
+            private Canvas outputCanvas;
+
+            public Edge(Vertex v1, Vertex v2, Canvas outputCanvas)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
+
+                this.outputCanvas = outputCanvas;
+
+                visualComponent = new Label();
+                visualComponent.Background = Brushes.LightGray;
+                outputCanvas.Children.Add(visualComponent);
+
+                SetPosition();
+            }
+
+            public void SetPosition()
+            {
+                //If y value is equal the edge is horizontal
+                if (v1.Y == v2.Y)
+                {
+                    visualComponent.Width = v2.X - v1.X;
+                    visualComponent.Height = VERTEX_SIZE;
+                    Canvas.SetTop(visualComponent, v1.Y);
+                    Canvas.SetLeft(visualComponent, v1.X);
+                }
+                //Otherwise the edge is vertical
+                else
+                {
+                    visualComponent.Width = VERTEX_SIZE;
+                    visualComponent.Height = v1.Y - v2.Y;
+                    Canvas.SetTop(visualComponent, v2.Y);
+                    Canvas.SetLeft(visualComponent, v2.X);
+                }
+            }
         }
 
         /// <summary>
@@ -168,7 +216,10 @@ namespace Paint_Calculator
                 visualComponent.Width = VERTEX_SIZE;
                 visualComponent.Height = VERTEX_SIZE;
                 visualComponent.Background = Brushes.Black;
+
+                this.outputCanvas = outputCanvas;
                 outputCanvas.Children.Add(visualComponent);
+                Canvas.SetZIndex(visualComponent, 1);
             }
 
             public void SetPosition(int x, int y)
@@ -178,6 +229,16 @@ namespace Paint_Calculator
 
                 Canvas.SetTop(visualComponent, y);
                 Canvas.SetLeft(visualComponent, x);
+            }
+
+            public int X
+            {
+                get { return x; }
+            }
+
+            public int Y
+            {
+                get { return y; }
             }
         }
     }

@@ -1,0 +1,6 @@
+Assumptions:
+
+> Room is usually a square or rectangle
+> User may not be familiar with paint calculator program so a simple UI and visual aid is necessary
+> 1 type of paint is being used
+> User may require multiple coats of paint

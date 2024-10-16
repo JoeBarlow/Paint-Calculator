@@ -1,0 +1,17 @@
+My original plan for this project was to create a custom “Square” shape that I could resize and extrude. 
+I wanted to give the user the ability to add vertices and drag out newly created edges - essentially attaching a new square to the base room.
+
+Given the time constraints, I was only able to lay out the foundation for this system and display the input/output with basic text boxes.
+
+With more time to work on the project I would implement the following things:
+   > Resizable square by dragging edges
+   > The ability to add additional vertices
+   > The ability to extrude edges and create custom shapes like an “L”
+   > Exportable pdf of the results so the user can store them
+
+I designed the 3 requirements: floor area, room volume and paint quantity with this in mind. 
+By creating a new square object for extruded edges, I could loop through all existing squares and the 3 requirements would become the sum of their results.
+
+I enjoyed working on this project as it was my first proper attempt at WPF and it was interesting to see what I could create with the tools available to me. 
+If I were to attempt this again I would certainly pull back on my ambition and focus on a simpler UI - 4 hours is shorter than it seems. 
+However, I’m sure with additional time to develop this project it would become an awesome solution to the problem, and have an interactive and intuitive design for the user.
